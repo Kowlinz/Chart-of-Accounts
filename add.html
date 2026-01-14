@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Account - Winnolas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+            <div class="brand-name">Winnolas<span class="tm-symbol">&trade;</span></div>
+        </div>
+        <div class="header-right"><div class="profile-icon"></div></div>
+    </header>
+
+    <div class="sub-header">
+        <div class="page-title">Add New Child Account</div>
+        <a href="index.html" class="close-btn-container" style="text-decoration: none; color: black;">
+            <div class="close-icon-circle"><i class="fa-solid fa-arrow-left"></i></div>
+            <span class="close-text">Back</span>
+        </a>
+    </div>
+
+    <main class="main-container">
+        <div class="content-box form-page">
+            
+            <div class="form-row">
+                <label>Parent Account</label>
+                <div class="input-wrapper">
+                    <input type="text" id="parentAccountDisplay" class="form-input read-only" readonly>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>Code</label>
+                <input type="text" id="inp-code" class="form-input" placeholder="Enter Code">
+            </div>
+
+            <div class="form-row">
+                <label>Account Name</label>
+                <input type="text" id="inp-name" class="form-input" placeholder="Enter Account Name">
+            </div>
+
+            <div class="form-row">
+                <label>Nature</label>
+                <select id="inp-nature" class="form-input">
+                    <option value="Debit">Debit</option>
+                    <option value="Credit">Credit</option>
+                </select>
+            </div>
+
+            <!-- <div class="form-row">
+                <label>Tags</label>
+                <div class="tags-container">
+                    <input type="text" id="inp-tags" placeholder="Add keywords...">
+                    <button class="add-tag-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div> -->
+
+            <div class="form-row">
+                <label>Book Description</label>
+                <textarea id="inp-desc" class="form-input" rows="3"></textarea>
+            </div>
+
+            <div class="form-footer">
+                <button class="btn-cancel" onclick="window.location.href='index.html'">Cancel</button>
+                <button class="btn-save" onclick="saveToStorage()">Save Account</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // On Load: Read URL param ?parent=...
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const parent = urlParams.get('parent') || 'Asset';
+            document.getElementById('parentAccountDisplay').value = parent;
+        }
+    </script>
+</body>
+</html>

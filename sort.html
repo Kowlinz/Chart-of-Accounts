@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Sorting - Winnolas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+            <div class="brand-name">Winnolas<span class="tm-symbol">&trade;</span></div>
+        </div>
+        <div class="header-right"><div class="profile-icon"></div></div>
+    </header>
+
+    <div class="sub-header">
+        <div class="page-title">Edit Sorting: <span id="sorting-parent-name"></span></div>
+        <a href="index.html" class="close-btn-container" style="text-decoration: none; color: black;">
+            <div class="close-icon-circle"><i class="fa-solid fa-arrow-left"></i></div>
+            <span class="close-text">Back</span>
+        </a>
+    </div>
+
+    <main class="main-container">
+        <div class="content-box form-page">
+            
+            <p class="helper-text">Drag and drop the items using the handle (<i class="fa-solid fa-grip-vertical"></i>) to reorder them.</p>
+
+            <div id="sort-list" class="sort-list-container">
+                </div>
+
+            <div class="form-footer">
+                <button class="btn-cancel" onclick="window.location.href='index.html'">Cancel</button>
+                <button class="btn-save" onclick="saveSortingOrder()">Save Order</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Load data when page opens
+        window.onload = function() {
+            loadAccountForSorting();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+/* --- General Reset & Fonts --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+    font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; 
+    background-color: #f4f6f8; 
+    color: #444; 
+    line-height: 1.5;
+}
+
+/* --- HEADER (Blue Theme) --- */
+.global-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 60px;
+    background-color: #0091ea; color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+    position: sticky; top: 0; z-index: 1000;
+}
+.header-left { display: flex; align-items: center; height: 100%; gap: 15px; }
+.menu-icon { font-size: 1.4rem; cursor: pointer; color: #fff; padding: 5px; }
+.brand-container { display: flex; align-items: center; margin-right: 15px; }
+.brand-logo-img { font-size: 1.6rem; margin-right: 8px; }
+.brand-name { font-size: 1.4rem; font-weight: 700; text-transform: lowercase; letter-spacing: 0.5px; }
+.tm-symbol { font-size: 0.6rem; vertical-align: super; }
+
+/* Nav Buttons */
+.nav-btn {
+    display: flex; align-items: center; 
+    background-color: #0277bd; color: #fff;
+    padding: 8px 14px; margin-right: 4px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s; height: 36px;
+}
+.nav-btn:hover { background-color: #01579b; }
+.nav-btn i { margin-right: 8px; font-size: 1rem; }
+.badge {
+    background-color: #ff3d00; color: white; font-size: 0.7rem; font-weight: bold;
+    padding: 2px 6px; border-radius: 10px; margin-left: 6px; 
+    position: relative; top: -1px;
+}
+
+/* Header Right */
+.header-right { display: flex; align-items: center; gap: 12px; }
+.icon-btn {
+    width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;
+    cursor: pointer; border-radius: 50%; font-size: 1.2rem; color: #fff;
+    transition: background 0.2s;
+}
+.icon-btn:hover { background-color: rgba(255,255,255,0.2); }
+.user-profile-circle {
+    width: 40px; height: 40px; background-color: #fff; color: #0091ea;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 1.8rem; cursor: pointer; margin-left: 5px;
+}
+
+/* --- SUB HEADER --- */
+.sub-header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 25px 30px 15px 30px; 
+}
+.page-title { 
+    font-size: 1.5rem; font-weight: 700; color: #333; 
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.close-btn-container { 
+    display: flex; flex-direction: column; align-items: center; 
+    cursor: pointer; color: #7f8c8d; text-decoration: none;
+    transition: color 0.2s;
+}
+.close-btn-container:hover { color: #e74c3c; }
+.close-icon-circle { 
+    border: 2px solid currentColor; border-radius: 50%; width: 30px; height: 30px; 
+    display: flex; justify-content: center; align-items: center; font-size: 0.9rem; margin-bottom: 2px;
+}
+.close-text { font-size: 0.7rem; font-weight: 700; }
+
+/* --- MAIN CONTENT & CARD --- */
+.main-container { padding: 0 30px 40px 30px; }
+
+.content-box { 
+    background-color: #fff; 
+    border-radius: 4px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    padding: 10px 0;
+    min-height: auto; 
+    border: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+/* --- ACCOUNT ITEMS --- */
+.account-item { 
+    position: relative; display: flex; justify-content: space-between; align-items: center; 
+    padding: 16px 25px; 
+    border-bottom: 1px solid #eee;
+    font-weight: 700; font-size: 1.1rem; color: #2c3e50;
+    background-color: #fff; 
+    cursor: pointer; 
+    transition: background 0.2s;
+}
+.account-item:hover { background-color: #f5fafd; } 
+
+/* Style for the icons next to account names */
+.acc-icon {
+    margin-right: 12px; /* Changed from margin-left to margin-right */
+    color: #0091ea; 
+    font-size: 1.1rem;
+    opacity: 0.8;
+    vertical-align: middle;
+}
+
+/* Optional: Make the child icons slightly smaller/different color */
+.child-item .acc-icon {
+    font-size: 0.9rem;
+    color: #78909c; /* Blue Grey */
+}
+
+/* --- ELLIPSIS BUTTON --- */
+.indicator { 
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; 
+    color: #546e7a; 
+    transition: all 0.2s ease;
+}
+
+.indicator:hover, .indicator:active { 
+    background-color: #e1f5fe; 
+    color: #0288d1; 
+}
+
+/* --- DROPDOWN MENU --- */
+.dropdown-menu { 
+    position: absolute; 
+    top: 45px;
+    right: 15px;
+    width: 280px; 
+    background-color: #fff; 
+    border-radius: 4px; 
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15); 
+    border: 1px solid #e0e0e0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px) scale(0.98);
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0s linear 0.15s;
+}
+
+/* OPEN STATE */
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0s;
+}
+
+/* General Dropdown Item */
+.dropdown-item { 
+    padding: 14px 20px; 
+    border-bottom: 1px solid #f5f5f5; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    font-weight: 500; 
+    color: #455a64;
+    text-decoration: none; 
+    display: flex; 
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease, background-color 0.2s; /* Added background-color transition */
+}
+
+.dropdown-menu.show .dropdown-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+.dropdown-menu.show .dropdown-item:nth-child(1) { transition-delay: 0.03s; }
+.dropdown-menu.show .dropdown-item:nth-child(2) { transition-delay: 0.06s; }
+.dropdown-menu.show .dropdown-item:nth-child(3) { transition-delay: 0.09s; }
+.dropdown-item i { margin-right: 12px; font-size: 1.1rem; width: 20px; text-align: center; }
+.dropdown-item:last-child { border-bottom: none; }
+.dropdown-item:hover { background-color: #fafafa; }
+
+/* --- SPECIFIC BUTTON STYLES (UPDATED) --- */
+
+/* 1. Edit Sorting */
+.item-sort { color: #455a64; }
+.item-sort:hover { background-color: #eceff1; }
+
+/* 2. Add Child (UPDATED: Transparent default, Teal only on hover) */
+.child-menu-header { 
+    background-color: transparent; /* Removed the default teal background */
+    color: #009688; 
+    font-weight: 600;
+}
+.child-menu-header:hover { 
+    background-color: #e0f2f1; /* Light Teal appears ONLY on hover */
+}
+
+/* 3. Edit */
+.item-edit { color: #00c853; }
+.item-edit:hover { background-color: #e8f5e9; } 
+
+/* 4. Delete */
+.item-delete { color: #ff5252; }
+.item-delete:hover { background-color: #ffebee; } 
+
+/* 5. View */
+.item-view { color: #7c4dff; }
+.item-view:hover { background-color: #ede7f6; } 
+
+
+/* --- CHILDREN TREE VIEW --- */
+.children-container {
+    display: none; 
+    background-color: #fff;
+}
+
+.child-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 25px; 
+    border-bottom: 1px solid #f9f9f9;
+    font-size: 1rem; color: #555;
+    position: relative;
+    transition: background 0.2s;
+}
+.child-item:hover { background-color: #f9f9f9; }
+
+.child-item::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background-color: transparent;
+    transition: background-color 0.2s;
+}
+.child-item:hover::before { background-color: #0091ea; }
+.child-item.empty { padding: 20px; color: #aaa; font-style: italic; text-align: center; display: block; }
+
+
+/* --- FORM PAGES --- */
+.form-page { max-width: 800px; margin: 0 auto; padding: 40px; box-shadow: none; border: none; }
+.form-row { display: flex; margin-bottom: 25px; align-items: center; }
+.form-row > label { width: 25%; font-weight: 600; color: #555; }
+.input-wrapper, .form-input, .tags-container { width: 75%; }
+.form-input { 
+    width: 100%; padding: 12px 15px; 
+    border: 1px solid #dcdcdc; border-radius: 4px; 
+    font-size: 1rem; outline: none; transition: all 0.2s;
+}
+.form-input:focus { border-color: #0091ea; box-shadow: 0 0 0 3px rgba(0,145,234,0.1); }
+.read-only { background-color: #f5f5f5; color: #777; border-color: #eee; }
+
+.tags-container { display: flex; border: 1px solid #2ecc71; border-radius: 4px; padding: 0; overflow: hidden; }
+.tags-container input { padding: 12px; flex-grow: 1; border: none; outline: none; }
+.add-tag-btn { background-color: #2ecc71; border: none; color: white; width: 50px; cursor: pointer; font-size: 1.2rem; }
+.add-tag-btn:hover { background-color: #27ae60; }
+
+.form-footer { margin-top: 40px; display: flex; justify-content: flex-end; gap: 15px; border-top: 1px solid #eee; padding-top: 25px; }
+.btn-cancel { padding: 10px 25px; background: #fff; border: 1px solid #ccc; border-radius: 4px; font-weight: 600; color: #555; cursor: pointer; }
+.btn-cancel:hover { background: #f5f5f5; }
+.btn-save { padding: 10px 25px; background: #0091ea; border: none; border-radius: 4px; font-weight: 600; color: #fff; cursor: pointer; box-shadow: 0 2px 5px rgba(0,145,234,0.3); }
+.btn-save:hover { background: #007bb2; transform: translateY(-1px); }
+.btn-delete { padding: 10px 25px; background: #ff5252; border: none; border-radius: 4px; font-weight: 600; color: #fff; cursor: pointer; }
+.btn-delete:hover { background: #d32f2f; }
+
+/* Sort Page Styles */
+.helper-text { background-color: #e3f2fd; padding: 15px; border-radius: 4px; color: #0277bd; margin-bottom: 20px; border-left: 5px solid #0288d1; }
+.sort-list-container { background: #fafafa; padding: 20px; border-radius: 4px; border: 1px solid #eee; }
+.sortable-item { 
+    display: flex; align-items: center; padding: 15px; 
+    background: #fff; border: 1px solid #ddd; border-radius: 4px; 
+    margin-bottom: 10px; cursor: grab; transition: all 0.2s;
+}
+.sortable-item:hover { border-color: #0091ea; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.sortable-item.dragging { opacity: 0.5; background: #e1f5fe; border: 2px dashed #0091ea; }
+.drag-handle { margin-right: 15px; color: #cfd8dc; cursor: grab; font-size: 1.2rem; }
+.sortable-item:hover .drag-handle { color: #0091ea; }
+
+/* --- CUSTOM CONFIRMATION MODAL --- */
+.custom-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px); /* Subtle blur effect behind modal */
+    animation: fadeIn 0.2s ease-out;
+}
+
+.custom-modal-box {
+    background: #fff;
+    width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: scale(0.9);
+    animation: popIn 0.2s ease-out forwards;
+    position: relative;
+}
+
+.modal-icon-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    margin: 0 auto 20px auto;
+    font-size: 1.8rem;
+}
+
+/* Modal Variants */
+.modal-danger .modal-icon-circle { background-color: #ffebee; color: #d32f2f; }
+.modal-danger .btn-confirm { background-color: #d32f2f; color: #fff; }
+.modal-danger .btn-confirm:hover { background-color: #b71c1c; }
+
+.modal-success .modal-icon-circle { background-color: #e8f5e9; color: #2e7d32; }
+.modal-success .btn-confirm { background-color: #2e7d32; color: #fff; }
+.modal-success .btn-confirm:hover { background-color: #1b5e20; }
+
+.modal-info .modal-icon-circle { background-color: #e3f2fd; color: #0288d1; }
+.modal-info .btn-confirm { background-color: #0288d1; color: #fff; }
+.modal-info .btn-confirm:hover { background-color: #01579b; }
+
+.modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #333; }
+.modal-message { font-size: 0.95rem; color: #666; margin-bottom: 25px; line-height: 1.5; }
+
+.modal-actions { display: flex; justify-content: center; gap: 15px; }
+
+.btn-modal {
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.btn-cancel-modal { background-color: #f5f5f5; color: #555; }
+.btn-cancel-modal:hover { background-color: #e0e0e0; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }

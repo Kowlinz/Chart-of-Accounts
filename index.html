@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winnolas - Chart of Accounts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="global-header">
+        <div class="header-left">
+            <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+            
+            <div class="brand-container">
+                <div class="brand-logo-img"></div> <div class="brand-name">winnolas<span class="tm-symbol">&trade;</span></div>
+            </div>
+
+            <div class="nav-btn">
+                <i class="fa-solid fa-house"></i> AGENCY
+            </div>
+            <div class="nav-btn">
+                <i class="fa-solid fa-clock-rotate-left"></i> RECENT TABS
+                <!-- <span class="badge"></span> -->
+            </div>
+            <div class="nav-btn">
+                <i class="fa-regular fa-circle-user"></i> JOHN DOE
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="icon-btn"><i class="fa-regular fa-envelope"></i></div>
+            
+            <div class="icon-btn" style="position: relative;">
+                <i class="fa-regular fa-bell"></i>
+                <!-- <span class="badge" style="position: absolute; top: 2px; right: 2px;"></span> -->
+            </div>
+
+            <div class="user-profile-circle">
+                <i class="fa-solid fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="sub-header">
+        <div class="page-title">Chart of Accounts</div>
+        <div class="close-btn-container">
+            <div class="close-icon-circle"><i class="fa-solid fa-xmark"></i></div>
+            <span class="close-text">Close</span>
+        </div>
+    </div>
+
+    <main class="main-container">
+        <div class="content-box">
+            
+            <div class="account-item" onclick="toggleChildren('Asset')">
+                <span class="account-name">
+                        <i class="fa-solid fa-wallet acc-icon"></i> ASSET
+                </span>
+                <span class="indicator" onclick="event.stopPropagation(); toggleMenu('menu-asset')">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </span>
+                
+                <div id="menu-asset" class="dropdown-menu">
+                    <a href="sort.html?parent=Asset" class="dropdown-item item-sort link-item">
+                        <i class="fa-solid fa-arrow-down-z-a"></i> Edit Sorting
+                    </a>
+
+                    <a href="add.html?parent=Asset" class="dropdown-item child-menu-header link-item">
+                        <i class="fa-solid fa-folder-plus"></i> Add Child for ASSET
+                    </a>
+
+                    <!-- <div class="dropdown-item item-view">
+                        <i class="fa-solid fa-eye"></i> View Contents of ASSET
+                    </div> -->
+                </div>
+
+                
+            </div>
+            <div id="children-Asset" class="children-container"></div>
+
+
+            <div class="account-item" onclick="toggleChildren('Liability')">
+                <span class="account-name">
+                        <i class="fa-solid fa-file-invoice-dollar acc-icon"></i> LIABILITY
+                </span>
+                <span class="indicator" onclick="event.stopPropagation(); toggleMenu('menu-liability')">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </span>
+                
+                <div id="menu-liability" class="dropdown-menu">
+                    <a href="sort.html?parent=Liability" class="dropdown-item item-sort link-item">
+                        <i class="fa-solid fa-arrow-down-z-a"></i> Edit Sorting
+                    </a>
+
+                    <a href="add.html?parent=Liability" class="dropdown-item child-menu-header link-item">
+                        <i class="fa-solid fa-folder-plus"></i> Add Child for LIABILITY
+                    </a>
+                    <!-- <div class="dropdown-item item-view">
+                        <i class="fa-solid fa-eye"></i> View Contents of LIABILITY
+                    </div> -->
+                </div>
+            </div>
+            <div id="children-Liability" class="children-container"></div>
+
+
+            <div class="account-item" onclick="toggleChildren('Capital')">
+                <span class="account-name">
+                        <i class="fa-solid fa-coins acc-icon"></i> CAPITAL
+                </span>
+                <span class="indicator" onclick="event.stopPropagation(); toggleMenu('menu-capital')">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </span>
+                
+                <div id="menu-capital" class="dropdown-menu">
+                    <a href="sort.html?parent=Capital" class="dropdown-item item-sort link-item">
+                        <i class="fa-solid fa-arrow-down-z-a"></i> Edit Sorting
+                    </a>
+                    <a href="add.html?parent=Capital" class="dropdown-item child-menu-header link-item">
+                        <i class="fa-solid fa-folder-plus"></i> Add Child for CAPITAL
+                    </a>
+                    <!-- <div class="dropdown-item item-view">
+                         <i class="fa-solid fa-eye"></i> View Contents of CAPITAL
+                    </div> -->
+                </div>
+            </div>
+            <div id="children-Capital" class="children-container"></div>
+
+
+            <div class="account-item" onclick="toggleChildren('Income')">
+                <span class="account-name">
+                        <i class="fa-solid fa-money-bill-trend-up acc-icon"></i> INCOME
+                </span>
+                <span class="indicator" onclick="event.stopPropagation(); toggleMenu('menu-income')">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </span>
+                
+                <div id="menu-income" class="dropdown-menu">
+                    <a href="sort.html?parent=Income" class="dropdown-item item-sort link-item">
+                        <i class="fa-solid fa-arrow-down-z-a"></i> Edit Sorting
+                    </a>
+                    <a href="add.html?parent=Income" class="dropdown-item child-menu-header link-item">
+                        <i class="fa-solid fa-folder-plus"></i> Add Child for INCOME
+                    </a>
+                    <!-- <div class="dropdown-item item-view">
+                        <i class="fa-solid fa-eye"></i> View Contents of INCOME
+                    </div> -->
+                </div>
+            </div>
+            <div id="children-Income" class="children-container"></div>
+
+
+            <div class="account-item" onclick="toggleChildren('Expense')">
+                <span class="account-name">
+                        <i class="fa-solid fa-receipt acc-icon"></i> EXPENSE
+                </span>
+                <span class="indicator" onclick="event.stopPropagation(); toggleMenu('menu-expense')">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </span>
+                
+                <div id="menu-expense" class="dropdown-menu">
+                    <a href="sort.html?parent=Expense" class="dropdown-item item-sort link-item">
+                        <i class="fa-solid fa-arrow-down-z-a"></i> Edit Sorting
+                    </a>
+                    <a href="add.html?parent=Expense" class="dropdown-item child-menu-header link-item">
+                        <i class="fa-solid fa-folder-plus"></i> Add Child for EXPENSE
+                    </a>
+                    <!-- <div class="dropdown-item item-view">
+                        <i class="fa-solid fa-eye"></i> View Contents of EXPENSE
+                    </div> -->
+                </div>
+            </div>
+            <div id="children-Expense" class="children-container"></div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            // Initialize: Load any saved children
+            ['Asset', 'Liability', 'Capital', 'Income', 'Expense'].forEach(acc => {
+                renderChildren(acc);
+            });
+        }
+    </script>
+</body>
+</html>

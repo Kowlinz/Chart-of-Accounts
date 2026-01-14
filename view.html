@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Account - Winnolas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+            <div class="brand-name">Winnolas<span class="tm-symbol">&trade;</span></div>
+        </div>
+        <div class="header-right"><div class="profile-icon"></div></div>
+    </header>
+
+    <div class="sub-header">
+        <div class="page-title">View Account Details</div>
+        <a href="index.html" class="close-btn-container" style="text-decoration: none; color: black;">
+            <div class="close-icon-circle"><i class="fa-solid fa-arrow-left"></i></div>
+            <span class="close-text">Back</span>
+        </a>
+    </div>
+
+    <main class="main-container">
+        <div class="content-box form-page">
+            
+            <div class="form-row">
+                <label>Parent Account</label>
+                <input type="text" id="view-parent" class="form-input read-only" readonly>
+            </div>
+
+            <div class="form-row">
+                <label>Code</label>
+                <input type="text" id="view-code" class="form-input read-only" readonly>
+            </div>
+
+            <div class="form-row">
+                <label>Account Name</label>
+                <input type="text" id="view-name" class="form-input read-only" readonly>
+            </div>
+
+            <div class="form-row">
+                <label>Nature</label>
+                <input type="text" id="view-nature" class="form-input read-only" readonly>
+            </div>
+            
+            <div class="form-row">
+                <label>Book Description</label>
+                <textarea id="view-desc" class="form-input read-only" rows="3" readonly></textarea>
+            </div>
+
+            <div class="form-footer" style="justify-content: space-between;">
+                <button class="btn-cancel" onclick="window.location.href='index.html'">Back to List</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // On Load: Populate data
+        window.onload = function() {
+            loadAccountForView();
+        }
+    </script>
+</body>
+</html>
