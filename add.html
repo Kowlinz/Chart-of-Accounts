@@ -11,14 +11,29 @@
     <header class="global-header">
         <div class="header-left">
             <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
-            <div class="brand-name">Winnolas<span class="tm-symbol">&trade;</span></div>
+            <div class="brand-container">
+                <div class="brand-name">winnolas<span class="tm-symbol">&trade;</span></div>
+            </div>
+            <div class="nav-btn"><i class="fa-solid fa-house"></i> AGENCY</div>
+            <div class="nav-btn"><i class="fa-solid fa-clock-rotate-left"></i> Recent Tabs 
+                <!-- <span class="badge">1</span> -->
+            </div>
+            <div class="nav-btn"><i class="fa-regular fa-circle-user"></i> JOHN DOE</div>
         </div>
-        <div class="header-right"><div class="profile-icon"></div></div>
+        <div class="header-right">
+            <div class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="icon-btn"><i class="fa-regular fa-envelope"></i></div>
+            <div class="icon-btn" style="position: relative;">
+                <i class="fa-regular fa-bell"></i>
+                <!-- <span class="badge" style="position: absolute; top: 2px; right: 2px;">2</span> -->
+            </div>
+            <div class="user-profile-circle"><i class="fa-solid fa-user-circle"></i></div>
+        </div>
     </header>
 
     <div class="sub-header">
         <div class="page-title">Add New Child Account</div>
-        <a href="index.html" class="close-btn-container" style="text-decoration: none; color: black;">
+        <a href="index.html" class="close-btn-container">
             <div class="close-icon-circle"><i class="fa-solid fa-arrow-left"></i></div>
             <span class="close-text">Back</span>
         </a>
@@ -29,9 +44,7 @@
             
             <div class="form-row">
                 <label>Parent Account</label>
-                <div class="input-wrapper">
-                    <input type="text" id="parentAccountDisplay" class="form-input read-only" readonly>
-                </div>
+                <div class="input-wrapper" id="parentPathContainer"></div>
             </div>
 
             <div class="form-row">
@@ -40,7 +53,7 @@
             </div>
 
             <div class="form-row">
-                <label>Account Name</label>
+                <label>Description</label>
                 <input type="text" id="inp-name" class="form-input" placeholder="Enter Account Name">
             </div>
 
@@ -52,17 +65,111 @@
                 </select>
             </div>
 
-            <!-- <div class="form-row">
+            <div class="form-row">
                 <label>Tags</label>
-                <div class="tags-container">
-                    <input type="text" id="inp-tags" placeholder="Add keywords...">
-                    <button class="add-tag-btn"><i class="fa-solid fa-plus"></i></button>
+                <div class="input-wrapper">
+                    <div class="tags-container">
+                        <input type="text" id="inp-tags" placeholder="Add keywords...">
+                        <button type="button" class="add-tag-btn" onclick="addTag()"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    
+                    <div id="tags-list-container" class="tags-list">
+                        </div>
                 </div>
-            </div> -->
+            </div>
 
             <div class="form-row">
                 <label>Book Description</label>
                 <textarea id="inp-desc" class="form-input" rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+                <label>CashFlow</label>
+                <select id="inp-cashflow" class="form-input">
+                    <option value="All">All</option>
+                    <option value="Operating">Operating</option>
+                    <option value="Investing">Investing</option>
+                    <option value="Financing">Financing</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Financial Position</label>
+                <select id="inp-finpos" class="form-input">
+                    <option value="None">None</option>
+                    <option value="Current Asset">Current Asset</option>
+                    <option value="Non-Current Asset">Non-Current Asset</option>
+                    <option value="Current Liability">Current Liability</option>
+                    <option value="Non-Current Liability">Non-Current Liability</option>
+                    <option value="Equity">Equity</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Account Options</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-depository">
+                        <div>
+                            <label for="chk-depository" class="cb-title">Depository Account</label>
+                            <p class="cb-desc">Check this if this account should be included in the total depository account balance calculations.</p>
+                        </div>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-sales">
+                        <div>
+                            <label for="chk-sales" class="cb-title">Sales Account</label>
+                            <p class="cb-desc">Check this if this account should be included when reporting the total gross sales of the company.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>Default Account Settings</label>
+                <div class="checkbox-group">
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-def-ap">
+                        <div>
+                            <label for="chk-def-ap" class="cb-title">Default Accounts Payable Account</label>
+                            <p class="cb-desc">This account will be used as the default for unclassified accounts payable entries.</p>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-def-ar">
+                        <div>
+                            <label for="chk-def-ar" class="cb-title">Default Accounts Receivable Account</label>
+                            <p class="cb-desc">This account will be used as the default for unclassified accounts receivable entries.</p>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-def-asset">
+                        <div>
+                            <label for="chk-def-asset" class="cb-title">Default Asset Account</label>
+                            <p class="cb-desc">This account will be used as the default for uncategorized assets.</p>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-def-furn">
+                        <div>
+                            <label for="chk-def-furn" class="cb-title">Default Furniture & Equipment Account</label>
+                            <p class="cb-desc">This account will be used as the default for uncategorized furniture and equipment.</p>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chk-def-ffe">
+                        <div>
+                            <label for="chk-def-ffe" class="cb-title">Default FFE Depreciation Account</label>
+                            <p class="cb-desc">This account will be used as the default for furniture and equipment depreciation entries.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="form-footer">
@@ -75,11 +182,8 @@
 
     <script src="script.js"></script>
     <script>
-        // On Load: Read URL param ?parent=...
         window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const parent = urlParams.get('parent') || 'Asset';
-            document.getElementById('parentAccountDisplay').value = parent;
+            loadAccountForAdd();
         }
     </script>
 </body>
