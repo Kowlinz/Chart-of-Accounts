@@ -239,29 +239,20 @@ body {
 
 .tags-container { 
     display: flex; 
-    align-items: center; /* Vertically centers the input text */
-    
-    /* Match standard input styles */
+    align-items: center; 
     border: 1px solid #dcdcdc; 
     border-radius: 4px; 
     background-color: #fff;
-    
-    /* Enforce exact height to match other inputs (standard is usually ~40-45px) */
     height: 45px; 
     width: 545px; 
-    
-    /* Remove default padding so the internal input fills it completely */
     padding: 0; 
     overflow: hidden; 
 }
 
 .tags-container input { 
-    /* Input takes up all available space */
     flex-grow: 1; 
     border: none; 
     outline: none; 
-    
-    /* Match font size and padding of standard inputs */
     font-size: 1rem;
     padding: 0 15px; 
     height: 100%; 
@@ -279,7 +270,6 @@ body {
     cursor: pointer; 
     font-size: 1.2rem; 
     
-    /* Center the icon */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -314,10 +304,9 @@ body {
 
 .parent-sub-text {
     font-size: 0.85rem;
-    color: #78909c; /* Blue Grey for the path */
+    color: #78909c;
 }
 
-/* Make the path arrows or text slightly distinct if needed */
 .path-separator {
     margin: 0 5px;
     color: #b0bec5;
@@ -426,7 +415,6 @@ body {
 .btn-cancel-modal { background-color: #f5f5f5; color: #555; }
 .btn-cancel-modal:hover { background-color: #e0e0e0; }
 
-/* Animations */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
@@ -443,7 +431,7 @@ body {
 }
 
 .checkbox-item input[type="checkbox"] {
-    margin-top: 4px; /* Align with the title text */
+    margin-top: 4px; 
     margin-right: 12px;
     width: 16px; 
     height: 16px;
@@ -468,7 +456,6 @@ body {
 
 /* --- TREE VIEW ARROWS & INDENTATION --- */
 
-/* The arrow icon container */
 .tree-toggle-icon {
     display: inline-block;
     width: 20px;
@@ -479,24 +466,20 @@ body {
     transition: transform 0.2s;
 }
 
-/* Rotate arrow when folder is open (you'll toggle this class in JS) */
 .tree-toggle-icon.expanded {
     transform: rotate(90deg);
 }
 
-/* Bold text for parents */
 .parent-bold {
     font-weight: 700;
-    color: #0d47a1; /* Optional: Darker blue for parents */
+    color: #0d47a1; 
 }
 
-/* Normal text for leaf nodes */
 .leaf-normal {
     font-weight: 400;
     color: #555;
 }
 
-/* Placeholder for items without children so text aligns */
 .no-arrow-spacer {
     display: inline-block;
     width: 20px; 

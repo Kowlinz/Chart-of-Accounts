@@ -11,7 +11,6 @@ function setStoredData(data) {
     localStorage.setItem('winnolasData', JSON.stringify(data));
 }
 
-// --- NEW: EXPANDED STATE HANDLING ---
 function getExpandedState() {
     var state = localStorage.getItem('winnolasExpanded');
     return state ? JSON.parse(state) : [];
@@ -22,10 +21,7 @@ function setExpandedState(state) {
 }
 
 function restoreExpandedState() {
-    // This runs when page loads to re-open previously opened folders
     var expanded = getExpandedState();
-    
-    // Restore Root folders (Asset, Liability, etc.)
     ['Asset', 'Liability', 'Capital', 'Income', 'Expense'].forEach(function(root) {
         if (expanded.includes(root)) {
             var container = document.getElementById('children-' + root);
@@ -93,7 +89,6 @@ function toggleChildren(parentName) {
     var expanded = getExpandedState();
 
     if (container.style.display === 'none' || container.style.display === '') {
-        // OPENING
         renderTree(parentName);
         container.style.display = 'block';
         
@@ -102,9 +97,8 @@ function toggleChildren(parentName) {
             setExpandedState(expanded);
         }
     } else {
-        // CLOSING
         container.style.display = 'none';
-        
+
         expanded = expanded.filter(item => item !== parentName);
         setExpandedState(expanded);
     }
@@ -119,7 +113,6 @@ function toggleSubFolder(name, rowElement) {
     var icon = rowElement.querySelector('.tree-toggle-icon');
 
     if (container.style.display === 'none') {
-        // OPENING
         container.style.display = 'block';
         if(icon) icon.classList.add('expanded');
 
@@ -128,7 +121,6 @@ function toggleSubFolder(name, rowElement) {
             setExpandedState(expanded);
         }
     } else {
-        // CLOSING
         container.style.display = 'none';
         if(icon) icon.classList.remove('expanded');
 
@@ -148,7 +140,7 @@ function renderTree(rootName) {
     }
 }
 
-// --- UPDATED RENDER RECURSIVE FUNCTION ---
+// --- RENDER RECURSIVE FUNCTION ---
 function renderRecursive(parentName, container, allData, level) {
     var accounts = allData[parentName] || [];
     var expandedState = getExpandedState();
@@ -160,10 +152,7 @@ function renderRecursive(parentName, container, allData, level) {
         var row = document.createElement('div');
         row.className = 'child-item';
         
-        // 2. INDENTATION UPDATE:
-        // Root Parent is 25px. 
-        // We start level 0 at 50px so it is indented.
-        // Then we add 30px for every subsequent level.
+        // 2. Idention Logic
         var indentPixels = 50 + (level * 30);
         
         row.style.paddingLeft = indentPixels + "px";
@@ -174,7 +163,7 @@ function renderRecursive(parentName, container, allData, level) {
         var editLink = `edit.html?parent=${parentName}&code=${acc.code}`;
         var viewLink = `view.html?parent=${parentName}&code=${acc.code}`;
         
-        // 3. Arrow & Styling Logic (Retained)
+        // 3. Arrow & Styling Logic
         var toggleIcon = '';
         var textClass = 'leaf-normal';
         var clickAction = ''; 
@@ -191,7 +180,7 @@ function renderRecursive(parentName, container, allData, level) {
             toggleIcon = `<span class="no-arrow-spacer"></span>`;
         }
 
-        // 4. Build Row HTML (Retained)
+        // 4. Build Row HTML
         row.innerHTML = `
             <div class="row-content" ${clickAction} style="display:flex; align-items:center; flex-grow:1; cursor:pointer;">
                 ${toggleIcon}
