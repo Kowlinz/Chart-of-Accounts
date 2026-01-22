@@ -261,15 +261,12 @@ body {
 .add-tag-btn { 
     height: 100%; 
     width: 50px; 
-    
     border: none; 
     border-left: 1px solid #dcdcdc; 
     background-color: #0091ea; 
     color: white; 
-    
     cursor: pointer; 
     font-size: 1.2rem; 
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -397,6 +394,10 @@ body {
 .modal-info .btn-confirm { background-color: #0288d1; color: #fff; }
 .modal-info .btn-confirm:hover { background-color: #01579b; }
 
+.modal-warning .modal-icon-circle { background-color: #fff3e0; color: #f57c00; }
+.modal-warning .btn-confirm { background-color: #f57c00; color: #fff; }
+.modal-warning .btn-confirm:hover { background-color: #ef6c00; }
+
 .modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #333; }
 .modal-message { font-size: 0.95rem; color: #666; margin-bottom: 25px; line-height: 1.5; }
 
@@ -455,7 +456,6 @@ body {
 }
 
 /* --- TREE VIEW ARROWS & INDENTATION --- */
-
 .tree-toggle-icon {
     display: inline-block;
     width: 20px;
@@ -484,4 +484,107 @@ body {
     display: inline-block;
     width: 20px; 
     margin-right: 5px;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (Max-Width 768px)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+    /* --- 1. HEADER ADJUSTMENTS --- */
+    .global-header {
+        padding: 0 15px;
+        height: 55px;
+    }
+
+    .header-left .nav-btn {
+        display: none;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+    }
+    .brand-logo-img {
+        font-size: 1.4rem;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+    .user-profile-circle {
+        width: 32px; height: 32px; font-size: 1.4rem;
+    }
+
+    /* --- 2. MAIN LAYOUT & LISTS --- */
+    .main-container {
+        padding: 0 10px 40px 10px;
+    }
+
+    .sub-header {
+        padding: 15px 10px;
+    }
+
+    .account-item, .child-item {
+        padding: 12px 10px; 
+    }
+
+    .account-name, .child-item span {
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 220px; 
+    }
+
+    /* --- 3. FORM PAGES (Stacking Layout) --- */
+    .form-page {
+        padding: 20px 15px;
+        margin-top: 10px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: stretch; 
+        margin-bottom: 15px;
+    }
+
+    .form-row > label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 8px;
+        padding-top: 0; 
+    }
+
+    .input-wrapper, 
+    .form-input, 
+    .tags-container {
+        width: 100%;
+    }
+
+    .tags-container {
+        width: 100%;
+    }
+
+    .form-footer {
+        flex-direction: column-reverse; 
+        gap: 10px;
+    }
+
+    .form-footer button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    /* --- 4. MODALS (Fluid Width) --- */
+    .custom-modal-box {
+        width: 90%; 
+        max-width: 400px;
+        padding: 25px 20px;
+    }
+
+    /* --- 5. PARENT PATH BOX --- */
+    .parent-path-container {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }

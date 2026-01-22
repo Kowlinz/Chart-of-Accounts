@@ -11,6 +11,7 @@ function setStoredData(data) {
     localStorage.setItem('winnolasData', JSON.stringify(data));
 }
 
+// --- 2. EXPANDED STATE HANDLING ---
 function getExpandedState() {
     var state = localStorage.getItem('winnolasExpanded');
     return state ? JSON.parse(state) : [];
@@ -33,8 +34,9 @@ function restoreExpandedState() {
     });
 }
 
+// --- 3. MODAL LOGIC ---
 
-// --- 2. CUSTOM MODAL LOGIC ---
+// Confirmation Modal (Yes/No)
 function showCustomModal(type, title, message, onConfirm) {
     var existingModal = document.getElementById('custom-confirm-modal');
     if (existingModal) existingModal.remove();
@@ -65,9 +67,35 @@ function showCustomModal(type, title, message, onConfirm) {
     document.getElementById('modal-confirm-btn').onclick = function() { onConfirm(); modal.remove(); };
 }
 
+// Validation Modal (OK Only)
+function showValidationModal(message) {
+    var existingModal = document.getElementById('custom-confirm-modal');
+    if (existingModal) existingModal.remove();
 
-// --- 3. INDEX PAGE LOGIC (Updated) ---
+    var modalHTML = `
+        <div id="custom-confirm-modal" class="custom-modal-overlay">
+            <div class="custom-modal-box modal-warning">
+                <div class="modal-icon-circle">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="modal-title">Validation Error</div>
+                <div class="modal-message">${message}</div>
+                <div class="modal-actions">
+                    <button class="btn-modal btn-confirm" id="modal-ok-btn" style="width:100%">OK</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    var modal = document.getElementById('custom-confirm-modal');
+    modal.style.display = 'flex';
 
+    document.getElementById('modal-ok-btn').onclick = function() {
+        modal.remove();
+    };
+}
+
+// --- 4. INDEX PAGE LOGIC ---
 function toggleMenu(menuId) {
     var menu = document.getElementById(menuId);
     var isAlreadyOpen = menu.classList.contains('show');
@@ -81,7 +109,6 @@ window.onclick = function(event) {
     }
 }
 
-// Logic for Main Roots (Asset, Liability, etc.)
 function toggleChildren(parentName) {
     var container = document.getElementById('children-' + parentName);
     if (!container) return;
@@ -91,20 +118,17 @@ function toggleChildren(parentName) {
     if (container.style.display === 'none' || container.style.display === '') {
         renderTree(parentName);
         container.style.display = 'block';
-        
         if (!expanded.includes(parentName)) {
             expanded.push(parentName);
             setExpandedState(expanded);
         }
     } else {
         container.style.display = 'none';
-
         expanded = expanded.filter(item => item !== parentName);
         setExpandedState(expanded);
     }
 }
 
-// Logic for Nested Sub-Folders
 function toggleSubFolder(name, rowElement) {
     var container = document.getElementById('children-' + name);
     if (!container) return;
@@ -115,7 +139,6 @@ function toggleSubFolder(name, rowElement) {
     if (container.style.display === 'none') {
         container.style.display = 'block';
         if(icon) icon.classList.add('expanded');
-
         if (!expanded.includes(name)) {
             expanded.push(name);
             setExpandedState(expanded);
@@ -123,7 +146,6 @@ function toggleSubFolder(name, rowElement) {
     } else {
         container.style.display = 'none';
         if(icon) icon.classList.remove('expanded');
-
         expanded = expanded.filter(item => item !== name);
         setExpandedState(expanded);
     }
@@ -140,21 +162,17 @@ function renderTree(rootName) {
     }
 }
 
-// --- RENDER RECURSIVE FUNCTION ---
 function renderRecursive(parentName, container, allData, level) {
     var accounts = allData[parentName] || [];
     var expandedState = getExpandedState();
 
     accounts.forEach(function(acc) {
-        // 1. Check for children
         var hasChildren = allData[acc.name] && allData[acc.name].length > 0;
-        
         var row = document.createElement('div');
         row.className = 'child-item';
         
-        // 2. Idention Logic
+        // Indentation calculation
         var indentPixels = 50 + (level * 30);
-        
         row.style.paddingLeft = indentPixels + "px";
 
         var menuId = 'menu-' + acc.code;
@@ -163,7 +181,6 @@ function renderRecursive(parentName, container, allData, level) {
         var editLink = `edit.html?parent=${parentName}&code=${acc.code}`;
         var viewLink = `view.html?parent=${parentName}&code=${acc.code}`;
         
-        // 3. Arrow & Styling Logic
         var toggleIcon = '';
         var textClass = 'leaf-normal';
         var clickAction = ''; 
@@ -180,7 +197,6 @@ function renderRecursive(parentName, container, allData, level) {
             toggleIcon = `<span class="no-arrow-spacer"></span>`;
         }
 
-        // 4. Build Row HTML
         row.innerHTML = `
             <div class="row-content" ${clickAction} style="display:flex; align-items:center; flex-grow:1; cursor:pointer;">
                 ${toggleIcon}
@@ -202,21 +218,18 @@ function renderRecursive(parentName, container, allData, level) {
         
         container.appendChild(row);
 
-        // 5. Recursion (Retained)
         if (hasChildren) {
             var subContainer = document.createElement('div');
             subContainer.id = 'children-' + acc.name;
             subContainer.className = 'children-container';
             subContainer.style.display = isOpen ? 'block' : 'none';
             container.appendChild(subContainer);
-            
             renderRecursive(acc.name, subContainer, allData, level + 1);
         }
     });
 }
 
-
-// --- 4. ACTION TRIGGERS ---
+// --- 5. FORM LOGIC ---
 
 var currentTags = []; 
 
@@ -291,11 +304,16 @@ function setFormValues(account) {
     if(document.getElementById('chk-def-ffe')) document.getElementById('chk-def-ffe').checked = account.def_ffe || false;
 }
 
+// --- 6. ACTION HANDLERS ---
+
 function saveToStorage() {
     var parent = document.getElementById('parentAccountDisplay').value;
     var values = getFormValues();
 
-    if(!values.code || !values.name) { alert("Code and Name are required!"); return; }
+    if(!values.code || !values.name) { 
+        showValidationModal("Code and Name are required fields."); 
+        return; 
+    }
 
     showCustomModal('modal-success', 'Create Account?', `Are you sure you want to add <b>${values.name}</b> to ${parent}?`, function() {
         var allData = getStoredData();
@@ -312,7 +330,10 @@ function updateAccount() {
     var originalName = document.getElementById('original-name').value;
     var values = getFormValues();
 
-    if(!values.code || !values.name) { alert("Code and Name are required!"); return; }
+    if(!values.code || !values.name) { 
+        showValidationModal("Code and Name are required fields."); 
+        return; 
+    }
 
     showCustomModal('modal-info', 'Save Changes?', `Are you sure you want to update <b>${originalName}</b>?`, function() {
         var allData = getStoredData();
@@ -352,8 +373,7 @@ function deleteEntry() {
     triggerDelete(urlParams.get('parent'), urlParams.get('code'), false);
 }
 
-
-// --- 6. PAGE LOADERS ---
+// --- 7. PAGE LOADERS ---
 
 function getPathArray(targetName, allData) {
     var roots = ["Asset", "Liability", "Capital", "Income", "Expense"];
@@ -480,8 +500,7 @@ function saveSortingOrder() {
     });
 }
 
-
-// --- 7. AUTO-RESTORE STATE ON PAGE LOAD ---
+// --- 8. INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', function() {
     if(document.getElementById('children-Asset')) {
         restoreExpandedState();
